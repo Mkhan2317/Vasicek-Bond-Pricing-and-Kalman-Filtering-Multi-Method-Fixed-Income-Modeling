@@ -49,30 +49,42 @@ This project integrates simulation, pricing, and estimation techniques, forming 
 
 ### Vasicek Model Dynamics
 
-$$ dr_t = \kappa(\theta - r_t)dt + \sigma dW_t $$
+$$
+dr_t = \kappa(\theta - r_t)dt + \sigma dW_t
+$$
 
-- $r_t$: Short rate
-- $\kappa$: Speed of mean reversion
-- $\theta$: Long-term mean level
-- $\sigma$: Volatility
+- \( r_t \): Short rate  
+- \( \kappa \): Speed of mean reversion  
+- \( \theta \): Long-term mean level  
+- \( \sigma \): Volatility
 
 ### Analytical Zero-Coupon Bond Price
 
-$$ P(t, T) = A(t, T) e^{-B(t, T) r_t} $$
+$$
+P(t, T) = A(t, T) e^{-B(t, T) r_t}
+$$
 
 Where:
 
-$$ B(t,T) = \frac{1 - e^{-\kappa (T - t)}}{\kappa} $$
+$$
+B(t,T) = \frac{1 - e^{-\kappa (T - t)}}{\kappa}
+$$
 
-$$ A(t,T) = \exp \left[ \left( \theta - \frac{\sigma^2}{2\kappa^2} \right)(B(t,T) - (T - t)) - \frac{\sigma^2}{4\kappa} B(t,T)^2 \right] $$
+$$
+A(t,T) = \exp \left[ \left( \theta - \frac{\sigma^2}{2\kappa^2} \right)(B(t,T) - (T - t)) - \frac{\sigma^2}{4\kappa} B(t,T)^2 \right]
+$$
 
 ### Kalman Filter (State-Space Form)
 
 - **State equation**:
-  $$  x_t = \alpha + \beta x_{t-1} + \eta_t, \quad \eta_t \sim \mathcal{N}(0, \sigma_\eta^2) $$
+  $$
+  x_t = \alpha + \beta x_{t-1} + \eta_t, \quad \eta_t \sim \mathcal{N}(0, \sigma_\eta^2)
+  $$
 
 - **Observation equation**:
-  $$  y_t = x_t + \epsilon_t, \quad \epsilon_t \sim \mathcal{N}(0, \sigma_\epsilon^2) $$
+  $$
+  y_t = x_t + \epsilon_t, \quad \epsilon_t \sim \mathcal{N}(0, \sigma_\epsilon^2)
+  $$
 
 ---
 
@@ -145,15 +157,15 @@ python kalman_filter_ou.py
 
 ### Kalman Filtering Estimates
 
-| Parameter                     | Estimate        | Ground Truth | Estimation Error |
-|-------------------------------|------------------|---------------|------------------|
-| $\theta$ (OLS)               | 0.507           | 0.5           | ~1.4%            |
-| $\kappa$ (OLS)               | 2.566           | 3.0           | ~14.5%           |
-| $\sigma$ (OLS)               | 0.497           | 0.5           | ~0.6%            |
-| $\alpha$ (Kalman)            | 0.00044         | Derived       | —                |
-| $\beta$ (Kalman)             | 0.9993          | ~1.0          | ~0.07%           |
-| $\sigma_\eta^2$ (Process Noise) | $6.88 \times 10^{-5}$ | Small    | —                |
-| $\sigma_\epsilon^2$ (Obs. Noise) | 0.00998      | 0.01          | ~0.2%            |
+| Parameter                        | Estimate        | Ground Truth | Estimation Error |
+|----------------------------------|------------------|---------------|------------------|
+| \( \theta \) (OLS)               | 0.507           | 0.5           | ~1.4%            |
+| \( \kappa \) (OLS)               | 2.566           | 3.0           | ~14.5%           |
+| \( \sigma \) (OLS)               | 0.497           | 0.5           | ~0.6%            |
+| \( \alpha \) (Kalman)            | 0.00044         | Derived       | —                |
+| \( \beta \) (Kalman)             | 0.9993          | ~1.0          | ~0.07%           |
+| \( \sigma_\eta^2 \) (Process Noise) | \(6.88 \times 10^{-5}\) | Small    | —                |
+| \( \sigma_\epsilon^2 \) (Obs. Noise) | 0.00998      | 0.01          | ~0.2%            |
 
 ---
 
@@ -162,7 +174,7 @@ python kalman_filter_ou.py
 - Vasicek bond price curve and 3D surface
 - Ornstein-Uhlenbeck process with observation noise
 - Kalman Filter and Smoother state estimates
-- Uncertainty bands ($\pm$ 1 std dev) and residual errors
+- Uncertainty bands (\(\pm\) 1 std dev) and residual errors
 
 ---
 
