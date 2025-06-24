@@ -77,12 +77,12 @@ $$
 ### Kalman Filter (State-Space Form)
 
 - **State equation**:
-  $$
+$$
   x_t = \alpha + \beta x_{t-1} + \eta_t, \quad \eta_t \sim \mathcal{N}(0, \sigma_\eta^2)
   $$
 
 - **Observation equation**:
-  $$
+$$
   y_t = x_t + \epsilon_t, \quad \epsilon_t \sim \mathcal{N}(0, \sigma_\epsilon^2)
   $$
 
